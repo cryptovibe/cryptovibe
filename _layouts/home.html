@@ -1,0 +1,67 @@
+---
+layout: default
+---
+{% raw %}
+<div id="app" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+  <section class="section is-small">
+    <div class="container">
+      <div id="chart" style="height: 200px;">
+      </div>
+    </div>
+  </section>
+
+  <section class="section is-top-paddingless">
+    <div class="container">
+      Current period: {{ periodStart }} - {{ periodEnd }}
+      <template>
+        <section class="little-top-padded">
+          <b-table
+              :data="tableData"
+              :paginated="isPaginated"
+              :per-page="perPage"
+              :current-page.sync="currentPage"
+              :pagination-simple="isPaginationSimple"
+              :default-sort-direction="defaultSortDirection"
+              :default-sort="defaultSort"
+              striped="true"
+              v-on:sort="onSort">
+
+            <template slot-scope="props">
+              <b-table-column field="name" label="Name">
+                <a v-bind:href="'https://t.me/' + props.row.id" target="_blank">
+                  {{ props.row.name }}
+                </a>
+              </b-table-column>
+
+              <b-table-column field="usersCount" label="Number of users in telegram" sortable>
+                {{ props.row.usersCount }}
+              </b-table-column>
+
+              <b-table-column field="newUsersSinceLastUpdate" label="New users in current period" sortable>
+                {{ props.row.newUsersSinceLastUpdate }}
+              </b-table-column>
+
+              <b-table-column field="newUsersPercent" label="Users growth in current period" sortable>
+                <span v-if="props.row.newUsersPercent > 0" class="tag is-success">
+                  {{ props.row.newUsersPercent }} %
+                </span>
+                <span v-if="props.row.newUsersPercent < 0" class="tag is-danger">
+                  {{ props.row.newUsersPercent }} %
+                </span>
+                <span v-if="props.row.newUsersPercent === 0" class="tag is-light">
+                  {{ props.row.newUsersPercent }} %
+                </span>
+              </b-table-column>
+
+              <b-table-column field="msgSinceLastUpdate" label="Messages last in current period" sortable>
+                {{ props.row.msgSinceLastUpdate }}
+              </b-table-column>
+            </template>
+          </b-table>
+        </section>
+      </template>
+    </div>
+  </section>
+</div>
+<script src="/assets/js/main.js"></script>
+{% endraw %}
