@@ -23,6 +23,7 @@ twitter_username: jekyllrb
 github_username:  jekyll
 telegram_url: https://t.me/checkico
 github_url: https://github.com/cryptovibe/cryptovibe
+google_analytics: UA-111757561-1
 
 # Build settings
 markdown: kramdown
