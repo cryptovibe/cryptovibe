@@ -16,7 +16,7 @@ const colMapping = {
   'name': 'Name',
   'usersCount': 'Number of users in telegram',
   'newUsersSinceLastUpdate': 'New users in current period',
-  'newUsersPercent': 'Users growth in current period',
+  'newUsersPercent': 'User growth in current period',
   'msgSinceLastUpdate': 'Messages in current period'
 };
 

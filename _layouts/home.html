@@ -41,7 +41,7 @@ layout: default
                 {{ props.row.newUsersSinceLastUpdate }}
               </b-table-column>
 
-              <b-table-column field="newUsersPercent" label="Users growth in current period" sortable>
+              <b-table-column field="newUsersPercent" label="User growth in current period" sortable>
                 <span v-if="props.row.newUsersPercent > 0" class="tag is-success">
                   {{ props.row.newUsersPercent }} %
                 </span>
