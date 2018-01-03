@@ -7,7 +7,8 @@ const maxMobileRes = 768;
 
 const cryptoData = tableData.infos.map(x => {
     // format to 2 decimal places
-    x.newUsersPercent = Math.ceil((10000 * x.newUsersSinceLastUpdate) / x.usersCount) / 100;
+    x.newUsersPercent = Math.round((10000 * x.newUsersSinceLastUpdate) / x.usersCount) / 100;
+    x.avgNoOfMsgPerUser = Math.round(100 * x.msgSinceLastUpdate / x.usersCount) / 100;
     return x;
 });
 
@@ -17,9 +18,9 @@ const colMapping = {
   'usersCount': 'Number of users in telegram',
   'newUsersSinceLastUpdate': 'New users in current period',
   'newUsersPercent': 'User growth in current period',
-  'msgSinceLastUpdate': 'Messages in current period'
+  'msgSinceLastUpdate': 'Messages in current period',
+  'avgNoOfMsgPerUser': 'Avg no of messages per user in current period'
 };
-
 
 (function() {
     const throttle = function (type, name, obj) {
@@ -106,6 +107,7 @@ function drawBasic(col, ord) {
             title: colMapping[col],
             minValue: Math.min(0, ...arrayData.map(x => x[col]))
         },
+        height: 400,
         isStacked: true,
         bars: 'horizontal'
     };

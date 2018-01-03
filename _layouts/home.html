@@ -1,9 +1,21 @@
 ---
 layout: default
 ---
+
+<section class="section is-small">
+  <div class="container">
+    <div class="notification">
+      Crypto vibe is still in early alpha, please give us feedback on our <a href="{{site.telegram_url}}" target="_blank">telegram channel</a> or send us an email at <a href="mailto:contact@cryptovibe.io" target="_blank">contact</a>.
+      Please share with us what kind of stats and what other media you would like to see. <br/>
+      If there is interest, we'll continue working on this.
+    </div>
+  </div>
+</section>
+
 {% raw %}
 <div id="app" xmlns:v-bind="http://www.w3.org/1999/xhtml">
-  <section class="section is-small">
+
+  <section class="section is-small is-top-paddingless">
     <div class="container">
       <div id="chart" style="height: 200px;">
       </div>
@@ -12,7 +24,11 @@ layout: default
 
   <section class="section is-top-paddingless">
     <div class="container">
-      Current period: {{ periodStart }} - {{ periodEnd }}
+      <div class="has-text-centered">
+        <b>
+          Current period: {{ periodStart }} - {{ periodEnd }}
+        </b>
+      </div>
       <template>
         <section class="little-top-padded">
           <b-table
@@ -56,6 +72,11 @@ layout: default
               <b-table-column field="msgSinceLastUpdate" label="Messages in current period" sortable>
                 {{ props.row.msgSinceLastUpdate }}
               </b-table-column>
+
+              <b-table-column field="avgNoOfMsgPerUser" label="Avg no of messages per user in current period" sortable>
+                {{ props.row.avgNoOfMsgPerUser }}
+              </b-table-column>
+
             </template>
           </b-table>
         </section>
