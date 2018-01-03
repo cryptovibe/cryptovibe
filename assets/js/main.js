@@ -53,7 +53,7 @@ window.addEventListener("optimizedResize", function() {
 
 
 const app = new Vue({
-    el: '#app',
+    el: '#cryptovibe-app',
     data: {
         tableData: cryptoData,
         isPaginated: false,
