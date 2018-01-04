@@ -4,11 +4,12 @@ let sortCol = 'usersCount';
 let sortOrd = 'desc';
 let width = getWindowWidth();
 const maxMobileRes = 768;
+const maxNoInChart = 11;
 
 const cryptoData = tableData.infos.map(x => {
     // format to 2 decimal places
-    x.newUsersPercent = Math.round((10000 * x.newUsersSinceLastUpdate) / x.usersCount) / 100;
-    x.avgNoOfMsgPerUser = Math.round(100 * x.msgSinceLastUpdate / x.usersCount) / 100;
+    x.newUsersPercent = x.newUsersSinceLastUpdate === null ? null : Math.round((10000 * x.newUsersSinceLastUpdate) / x.usersCount) / 100;
+    x.avgNoOfMsgPerUser = x.msgSinceLastUpdate === null ? null : Math.round(100 * x.msgSinceLastUpdate / x.usersCount) / 100;
     return x;
 });
 
@@ -86,12 +87,14 @@ function drawBasic(col, ord) {
 
     const arrayData = cryptoData
         .map(x => x)
+        .filter(x => x[col] !== null)
         .sort((a, b) => {
             if (ord === 'asc')
                 return a[col] - b[col];
             else
                 return b[col] - a[col];
         })
+        .slice(0, maxNoInChart)
         .map(x => { return [x.name, x[col]] });
 
     const headers = [['Crypto channel', colMapping[col],]];

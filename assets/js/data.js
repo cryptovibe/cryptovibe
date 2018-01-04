@@ -86,35 +86,35 @@ const tableData = {
         {
             "name" : "trade.io",
             "id" : "TradeToken",
-            "msgSinceLastUpdate" : 0,
+            "msgSinceLastUpdate" : null,
             "usersCount" : 10146,
             "newUsersSinceLastUpdate" : null
         },
         {
             "name" : "Bluzelle",
             "id" : "bluzelle",
-            "msgSinceLastUpdate" : 24,
+            "msgSinceLastUpdate" : null,
             "usersCount" : 16583,
             "newUsersSinceLastUpdate" : null
         },
         {
             "name" : "CoinLion",
             "id" : "coinlion_platform",
-            "msgSinceLastUpdate" : 3,
+            "msgSinceLastUpdate" : null,
             "usersCount" : 1662,
             "newUsersSinceLastUpdate" : null
         },
         {
             "name" : "HOQU",
             "id" : "hoquio",
-            "msgSinceLastUpdate" : 4,
+            "msgSinceLastUpdate" : null,
             "usersCount" : 7178,
             "newUsersSinceLastUpdate" : null
         },
         {
             "name" : "Envion",
             "id" : "envion",
-            "msgSinceLastUpdate" : 13,
+            "msgSinceLastUpdate" : null,
             "usersCount" : 16090,
             "newUsersSinceLastUpdate" : null
         }

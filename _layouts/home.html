@@ -49,15 +49,23 @@ layout: default
                 </a>
               </b-table-column>
 
-              <b-table-column field="usersCount" label="Number of users in telegram" sortable>
+              <b-table-column field="usersCount" label="Number of users in telegram" sortable centered>
                 {{ props.row.usersCount }}
               </b-table-column>
 
-              <b-table-column field="newUsersSinceLastUpdate" label="New users in current period" sortable>
-                {{ props.row.newUsersSinceLastUpdate }}
+              <b-table-column field="newUsersSinceLastUpdate" label="New users in current period" sortable centered>
+                <span v-if="props.row.newUsersSinceLastUpdate === null">
+                  -
+                </span>
+                <span v-if="props.row.newUsersSinceLastUpdate !== null">
+                  {{ props.row.newUsersSinceLastUpdate }}
+                </span>
               </b-table-column>
 
-              <b-table-column field="newUsersPercent" label="User growth in current period" sortable>
+              <b-table-column field="newUsersPercent" label="User growth in current period" sortable centered>
+                <span v-if="props.row.newUsersPercent === null">
+                  -
+                </span>
                 <span v-if="props.row.newUsersPercent > 0" class="tag is-success">
                   {{ props.row.newUsersPercent }} %
                 </span>
@@ -69,12 +77,22 @@ layout: default
                 </span>
               </b-table-column>
 
-              <b-table-column field="msgSinceLastUpdate" label="Messages in current period" sortable>
-                {{ props.row.msgSinceLastUpdate }}
+              <b-table-column field="msgSinceLastUpdate" label="Messages in current period" sortable centered>
+                <span v-if="props.row.msgSinceLastUpdate === null">
+                  -
+                </span>
+                <span v-if="props.row.msgSinceLastUpdate !== null">
+                  {{ props.row.msgSinceLastUpdate }}
+                </span>
               </b-table-column>
 
-              <b-table-column field="avgNoOfMsgPerUser" label="Avg no of messages per user in current period" sortable>
-                {{ props.row.avgNoOfMsgPerUser }}
+              <b-table-column field="avgNoOfMsgPerUser" label="Avg no of messages per user in current period" sortable centered>
+                <span v-if="props.row.avgNoOfMsgPerUser === null">
+                  -
+                </span>
+                <span v-if="props.row.avgNoOfMsgPerUser !== null">
+                  {{ props.row.avgNoOfMsgPerUser }}
+                </span>
               </b-table-column>
 
             </template>
