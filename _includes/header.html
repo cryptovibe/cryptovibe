@@ -3,20 +3,44 @@
     <a class="top-banner-link" href="https://icocheck.io" target="_blank">Brought to you by <b>ICO Check</b></a>
   </div>
 </div>
-<section class="hero is-small is-link">
+<section class="hero is-link">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title">
-        <a href="/" class="has-text-white">
+      <div class="columns is-vcentered">
+
+        <div class="column">
+          <h1 class="title">
+            <a href="/" class="has-text-white">
           <span class="icon is-large">
             <i class="mdi mdi-trending-up mdi-48px"></i>
           </span>
-          Crypto vibe
-        </a>
-      </h1>
-      <h2 class="subtitle">
-        Monitor telegram activity on crypto channels
-      </h2>
+              Crypto vibe
+            </a>
+          </h1>
+          <h2 class="subtitle">
+            Monitor telegram activity on crypto channels
+          </h2>
+        </div>
+
+        <div class="column is-narrow">
+          <div class="hero-ad-container">
+            <div id="hero-ad" class="box">
+              <div class="hero-ad-img">
+                <a href="{{ site.hero_ad.redirect_address }}" target="_blank">
+                  <img src="{{ site.hero_ad.image_src }}" />
+                </a>
+              </div>
+              <a class="hero-ad-text" href="{{ site.hero_ad.redirect_address }}" target="_blank">
+                {{ site.hero_ad.text }}
+              </a>
+              <div class="hero-ad-sponsored">
+                Sponsored
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>

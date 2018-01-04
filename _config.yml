@@ -25,7 +25,12 @@ telegram_url: https://t.me/checkico
 github_url: https://github.com/cryptovibe/cryptovibe
 google_analytics: UA-111757561-1
 # hack to invalidate cache on resource change
-version: 3
+version: 4
+
+hero_ad:
+  redirect_address: https://icocheck.io
+  image_src: https://icocheck.io/assets/logo_ico-check.svg
+  text: Background checks and due diligence for ICOs
 
 # Build settings
 markdown: kramdown
