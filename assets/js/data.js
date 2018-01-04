@@ -7,7 +7,7 @@ const tableData = {
     },
     "infos" : [
         {
-            "name" : "ICO Check",
+            "name" : "ICO-Check",
             "id" : "checkico",
             "msgSinceLastUpdate" : 126,
             "usersCount" : 409,

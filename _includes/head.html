@@ -7,12 +7,12 @@
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
-  <script src="/assets/js/data.js"></script>
+  <script src="/assets/js/data.js?v={{ site.version }}"></script>
   <link rel="stylesheet" href="https://unpkg.com/buefy/lib/buefy.min.css">
   <!-- Buefy JavaScript -->
   <script src="https://unpkg.com/buefy"></script>
 
-  <link rel="stylesheet" href="assets/main.css">
+  <link rel="stylesheet" href="assets/main.css?v={{ site.version }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
