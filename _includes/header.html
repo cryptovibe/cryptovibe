@@ -1,11 +1,11 @@
 <div class="top-banner">
   <p class="top-banner-text">
-    <a class="top-banner-link" href="{{ site.top_banner_ad.redirect_url }}" target="_blank">
+    <a class="top-banner-link" href="{{ site.top_banner_ad.redirect_address }}" target="_blank">
       {{ site.top_banner_ad.text }}
     </a>
   </p>
   {% if site.top_banner_ad.image_src %}
-  <a class="top-banner-img">
+  <a class="top-banner-img" href="{{ site.top_banner_ad.redirect_address }}">
     <img src="{{ site.top_banner_ad.image_src }}" />
   </a>
   {% endif %}
