@@ -54,7 +54,14 @@ a {
 .top-banner-text {
   font-size: 0.875rem;
   line-height: 1.25;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
+}
+
+.top-banner-img {
+  display: inline-block;
+  height: 34px;
+  width: 145px;
+  flex-shrink: 0;
 }
 
 a.top-banner-link {

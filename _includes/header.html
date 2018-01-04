@@ -1,8 +1,16 @@
 <div class="top-banner">
-  <div class="top-banner-text">
-    <a class="top-banner-link" href="https://icocheck.io" target="_blank">Brought to you by <b>ICO Check</b></a>
-  </div>
+  <p class="top-banner-text">
+    <a class="top-banner-link" href="{{ site.top_banner_ad.redirect_url }}" target="_blank">
+      {{ site.top_banner_ad.text }}
+    </a>
+  </p>
+  {% if site.top_banner_ad.image_src %}
+  <a class="top-banner-img">
+    <img src="{{ site.top_banner_ad.image_src }}" />
+  </a>
+  {% endif %}
 </div>
+
 <section class="hero is-link">
   <div class="hero-body">
     <div class="container">

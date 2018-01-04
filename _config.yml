@@ -27,8 +27,15 @@ google_analytics: UA-111757561-1
 # hack to invalidate cache on resource change
 version: 4
 
+top_banner_ad:
+  redirect_address: https://icocheck.io
+  text: Brought to you by <b>ICO Check</b>
+  # 145x34 image
+  image_src:
+
 hero_ad:
   redirect_address: https://icocheck.io
+  # 130x130 image
   image_src: https://icocheck.io/assets/logo_ico-check.svg
   text: Background checks and due diligence for ICOs
 
