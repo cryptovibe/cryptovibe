@@ -66,13 +66,7 @@ layout: default
                 <span v-if="props.row.newUsersPercent === null">
                   -
                 </span>
-                <span v-if="props.row.newUsersPercent > 0" class="tag is-success">
-                  {{ props.row.newUsersPercent }} %
-                </span>
-                <span v-if="props.row.newUsersPercent < 0" class="tag is-danger">
-                  {{ props.row.newUsersPercent }} %
-                </span>
-                <span v-if="props.row.newUsersPercent === 0" class="tag is-light">
+                <span v-if="props.row.newUsersPercent !== null">
                   {{ props.row.newUsersPercent }} %
                 </span>
               </b-table-column>
