@@ -314,7 +314,7 @@ const tableData = {
             "name" : "MATRIX",
             "id" : "matrixainetwork",
             "totalUnreadMsgs" : 0,
-            "msgSinceLastUpdate" : 0,
+            "msgSinceLastUpdate" : null,
             "usersCount" : 12932,
             "newUsersSinceLastUpdate" : -577
         },
@@ -322,7 +322,7 @@ const tableData = {
             "name" : "Republic Protocol",
             "id" : "republicprotocol",
             "totalUnreadMsgs" : 0,
-            "msgSinceLastUpdate" : 0,
+            "msgSinceLastUpdate" : null,
             "usersCount" : 4485,
             "newUsersSinceLastUpdate" : 67
         },
@@ -330,7 +330,7 @@ const tableData = {
             "name" : "TraDove",
             "id" : "tradoveglobalb2btokenoffering",
             "totalUnreadMsgs" : 0,
-            "msgSinceLastUpdate" : 0,
+            "msgSinceLastUpdate" : null,
             "usersCount" : 5413,
             "newUsersSinceLastUpdate" : 102
         }
