@@ -1,338 +1,338 @@
 const tableData = {
     "period" : {
-        "from" : "2018-01-17T20:26:09.240Z",
-        "to" : "2018-01-18T21:06:53.995Z",
-        "prettyFrom" : "2018-01-17 20:26 UTC",
-        "prettyTo" : "2018-01-18 21:06 UTC"
+        "from" : "2018-01-18T21:06:53.995Z",
+        "to" : "2018-01-19T20:24:58.551Z",
+        "prettyFrom" : "2018-01-18 21:06 UTC",
+        "prettyTo" : "2018-01-19 20:24 UTC"
     },
     "infos" : [
         {
             "name" : "ICO Check",
             "id" : "checkico",
-            "totalUnreadMsgs" : 4496,
-            "msgSinceLastUpdate" : 126,
-            "usersCount" : 963,
-            "newUsersSinceLastUpdate" : 26
+            "totalUnreadMsgs" : 4624,
+            "msgSinceLastUpdate" : 128,
+            "usersCount" : 991,
+            "newUsersSinceLastUpdate" : 28
         },
         {
             "name" : "Nucleus Vision",
             "id" : "nucleusvision",
-            "totalUnreadMsgs" : 70415,
-            "msgSinceLastUpdate" : 2829,
-            "usersCount" : 44966,
-            "newUsersSinceLastUpdate" : 534
+            "totalUnreadMsgs" : 73768,
+            "msgSinceLastUpdate" : 3353,
+            "usersCount" : 45436,
+            "newUsersSinceLastUpdate" : 470
         },
         {
             "name" : "Jibrel Network",
             "id" : "jibrel_network",
-            "totalUnreadMsgs" : 6965,
-            "msgSinceLastUpdate" : 580,
-            "usersCount" : 3903,
-            "newUsersSinceLastUpdate" : 78
+            "totalUnreadMsgs" : 7414,
+            "msgSinceLastUpdate" : 449,
+            "usersCount" : 3994,
+            "newUsersSinceLastUpdate" : 91
         },
         {
             "name" : "indaHash",
             "id" : "indahash_chat",
-            "totalUnreadMsgs" : 22004,
-            "msgSinceLastUpdate" : 1225,
-            "usersCount" : 12527,
-            "newUsersSinceLastUpdate" : 56
+            "totalUnreadMsgs" : 23190,
+            "msgSinceLastUpdate" : 1186,
+            "usersCount" : 12601,
+            "newUsersSinceLastUpdate" : 74
         },
         {
             "name" : "Quantstamp",
             "id" : "quantstamp",
-            "totalUnreadMsgs" : 43103,
-            "msgSinceLastUpdate" : 3399,
-            "usersCount" : 21396,
-            "newUsersSinceLastUpdate" : 138
+            "totalUnreadMsgs" : 45307,
+            "msgSinceLastUpdate" : 2204,
+            "usersCount" : 21561,
+            "newUsersSinceLastUpdate" : 165
         },
         {
             "name" : "SALPay",
             "id" : "salpayico",
-            "totalUnreadMsgs" : 10113,
-            "msgSinceLastUpdate" : 430,
-            "usersCount" : 2609,
-            "newUsersSinceLastUpdate" : 5
+            "totalUnreadMsgs" : 10333,
+            "msgSinceLastUpdate" : 220,
+            "usersCount" : 2600,
+            "newUsersSinceLastUpdate" : -9
         },
         {
             "name" : "Bounty0x",
             "id" : "bounty0x",
-            "totalUnreadMsgs" : 30139,
-            "msgSinceLastUpdate" : 1243,
-            "usersCount" : 4629,
-            "newUsersSinceLastUpdate" : 41
+            "totalUnreadMsgs" : 31022,
+            "msgSinceLastUpdate" : 883,
+            "usersCount" : 4623,
+            "newUsersSinceLastUpdate" : -6
         },
         {
             "name" : "INS",
             "id" : "ins_ecosystem",
-            "totalUnreadMsgs" : 78315,
-            "msgSinceLastUpdate" : 3829,
-            "usersCount" : 20903,
-            "newUsersSinceLastUpdate" : 58
+            "totalUnreadMsgs" : 82746,
+            "msgSinceLastUpdate" : 4431,
+            "usersCount" : 20897,
+            "newUsersSinceLastUpdate" : -6
         },
         {
             "name" : "Bread",
             "id" : "breadchat",
-            "totalUnreadMsgs" : 13608,
-            "msgSinceLastUpdate" : 465,
-            "usersCount" : 8276,
-            "newUsersSinceLastUpdate" : -15
+            "totalUnreadMsgs" : 14406,
+            "msgSinceLastUpdate" : 798,
+            "usersCount" : 8239,
+            "newUsersSinceLastUpdate" : -37
         },
         {
             "name" : "Ripple",
             "id" : "ripple",
-            "totalUnreadMsgs" : 43307,
-            "msgSinceLastUpdate" : 7043,
-            "usersCount" : 48176,
-            "newUsersSinceLastUpdate" : 654
+            "totalUnreadMsgs" : 49114,
+            "msgSinceLastUpdate" : 5807,
+            "usersCount" : 48538,
+            "newUsersSinceLastUpdate" : 362
         },
         {
             "name" : "Crypterium",
             "id" : "crypterium",
-            "totalUnreadMsgs" : 120177,
-            "msgSinceLastUpdate" : 8751,
-            "usersCount" : 34508,
-            "newUsersSinceLastUpdate" : 445
+            "totalUnreadMsgs" : 127295,
+            "msgSinceLastUpdate" : 7118,
+            "usersCount" : 34758,
+            "newUsersSinceLastUpdate" : 250
         },
         {
             "name" : "trade.io",
             "id" : "TradeToken",
-            "totalUnreadMsgs" : 23786,
-            "msgSinceLastUpdate" : 812,
-            "usersCount" : 10846,
-            "newUsersSinceLastUpdate" : -12
+            "totalUnreadMsgs" : 24721,
+            "msgSinceLastUpdate" : 935,
+            "usersCount" : 10825,
+            "newUsersSinceLastUpdate" : -21
         },
         {
             "name" : "Bluzelle",
             "id" : "bluzelle",
-            "totalUnreadMsgs" : 103601,
-            "msgSinceLastUpdate" : 11700,
-            "usersCount" : 27542,
-            "newUsersSinceLastUpdate" : 419
+            "totalUnreadMsgs" : 115807,
+            "msgSinceLastUpdate" : 12206,
+            "usersCount" : 27604,
+            "newUsersSinceLastUpdate" : 62
         },
         {
             "name" : "CoinLion",
             "id" : "coinlion_platform",
-            "totalUnreadMsgs" : 4199,
-            "msgSinceLastUpdate" : 237,
-            "usersCount" : 2276,
-            "newUsersSinceLastUpdate" : 95
+            "totalUnreadMsgs" : 4492,
+            "msgSinceLastUpdate" : 293,
+            "usersCount" : 2353,
+            "newUsersSinceLastUpdate" : 77
         },
         {
             "name" : "HOQU",
             "id" : "hoquio",
-            "totalUnreadMsgs" : 45851,
-            "msgSinceLastUpdate" : 1554,
-            "usersCount" : 13639,
-            "newUsersSinceLastUpdate" : 74
+            "totalUnreadMsgs" : 47715,
+            "msgSinceLastUpdate" : 1864,
+            "usersCount" : 13662,
+            "newUsersSinceLastUpdate" : 23
         },
         {
             "name" : "Envion",
             "id" : "envion",
-            "totalUnreadMsgs" : 88072,
-            "msgSinceLastUpdate" : 3703,
-            "usersCount" : 23019,
-            "newUsersSinceLastUpdate" : 128
+            "totalUnreadMsgs" : 92397,
+            "msgSinceLastUpdate" : 4325,
+            "usersCount" : 23054,
+            "newUsersSinceLastUpdate" : 35
         },
         {
             "name" : "LOOMIA",
             "id" : "loomia",
-            "totalUnreadMsgs" : 6328,
-            "msgSinceLastUpdate" : 356,
-            "usersCount" : 2455,
-            "newUsersSinceLastUpdate" : 73
+            "totalUnreadMsgs" : 6738,
+            "msgSinceLastUpdate" : 410,
+            "usersCount" : 2558,
+            "newUsersSinceLastUpdate" : 103
         },
         {
             "name" : "Pundi X",
             "id" : "pundix",
-            "totalUnreadMsgs" : 26389,
-            "msgSinceLastUpdate" : 6007,
-            "usersCount" : 12149,
-            "newUsersSinceLastUpdate" : 1422
+            "totalUnreadMsgs" : 36782,
+            "msgSinceLastUpdate" : 10393,
+            "usersCount" : 14416,
+            "newUsersSinceLastUpdate" : 2267
         },
         {
             "name" : "Gems",
             "id" : "gemsorg",
-            "totalUnreadMsgs" : 178345,
-            "msgSinceLastUpdate" : 4693,
-            "usersCount" : 47365,
-            "newUsersSinceLastUpdate" : 320
+            "totalUnreadMsgs" : 182697,
+            "msgSinceLastUpdate" : 4352,
+            "usersCount" : 47737,
+            "newUsersSinceLastUpdate" : 372
         },
         {
             "name" : "Minerva",
             "id" : "minervachat",
-            "totalUnreadMsgs" : 395,
-            "msgSinceLastUpdate" : 38,
-            "usersCount" : 1935,
-            "newUsersSinceLastUpdate" : 15
+            "totalUnreadMsgs" : 438,
+            "msgSinceLastUpdate" : 43,
+            "usersCount" : 1952,
+            "newUsersSinceLastUpdate" : 17
         },
         {
             "name" : "Ontology Network",
             "id" : "ontologynetwork",
-            "totalUnreadMsgs" : 31206,
-            "msgSinceLastUpdate" : 929,
-            "usersCount" : 16610,
-            "newUsersSinceLastUpdate" : 135
+            "totalUnreadMsgs" : 31724,
+            "msgSinceLastUpdate" : 518,
+            "usersCount" : 16659,
+            "newUsersSinceLastUpdate" : 49
         },
         {
             "name" : "Dether",
             "id" : "dether_io",
-            "totalUnreadMsgs" : 6118,
-            "msgSinceLastUpdate" : 500,
-            "usersCount" : 3829,
-            "newUsersSinceLastUpdate" : 179
+            "totalUnreadMsgs" : 6609,
+            "msgSinceLastUpdate" : 491,
+            "usersCount" : 4046,
+            "newUsersSinceLastUpdate" : 217
         },
         {
             "name" : "NuCypher",
             "id" : "nucypher",
-            "totalUnreadMsgs" : 2918,
-            "msgSinceLastUpdate" : 291,
-            "usersCount" : 2602,
-            "newUsersSinceLastUpdate" : 202
+            "totalUnreadMsgs" : 3120,
+            "msgSinceLastUpdate" : 202,
+            "usersCount" : 2746,
+            "newUsersSinceLastUpdate" : 144
         },
         {
             "name" : "Qlink",
             "id" : "qlinkmobile",
-            "totalUnreadMsgs" : 23739,
-            "msgSinceLastUpdate" : 970,
-            "usersCount" : 8431,
-            "newUsersSinceLastUpdate" : -17
+            "totalUnreadMsgs" : 24661,
+            "msgSinceLastUpdate" : 922,
+            "usersCount" : 8424,
+            "newUsersSinceLastUpdate" : -7
         },
         {
             "name" : "carVertical",
             "id" : "carverticalio",
-            "totalUnreadMsgs" : 60202,
-            "msgSinceLastUpdate" : 2998,
-            "usersCount" : 9794,
-            "newUsersSinceLastUpdate" : 45
+            "totalUnreadMsgs" : 66715,
+            "msgSinceLastUpdate" : 6513,
+            "usersCount" : 10084,
+            "newUsersSinceLastUpdate" : 290
         },
         {
             "name" : "WePower",
             "id" : "wepowernetwork",
-            "totalUnreadMsgs" : 80387,
-            "msgSinceLastUpdate" : 8917,
-            "usersCount" : 33953,
-            "newUsersSinceLastUpdate" : 1827
+            "totalUnreadMsgs" : 87206,
+            "msgSinceLastUpdate" : 6819,
+            "usersCount" : 35497,
+            "newUsersSinceLastUpdate" : 1544
         },
         {
             "name" : "TravelFlex",
             "id" : "travelflexchat",
-            "totalUnreadMsgs" : 32450,
-            "msgSinceLastUpdate" : 2068,
-            "usersCount" : 5339,
-            "newUsersSinceLastUpdate" : 122
+            "totalUnreadMsgs" : 35689,
+            "msgSinceLastUpdate" : 3239,
+            "usersCount" : 5470,
+            "newUsersSinceLastUpdate" : 131
         },
         {
             "name" : "DADI",
             "id" : "dadichat",
-            "totalUnreadMsgs" : 58912,
-            "msgSinceLastUpdate" : 8006,
-            "usersCount" : 25687,
-            "newUsersSinceLastUpdate" : 1712
+            "totalUnreadMsgs" : 65851,
+            "msgSinceLastUpdate" : 6939,
+            "usersCount" : 26840,
+            "newUsersSinceLastUpdate" : 1153
         },
         {
             "name" : "LALA World",
             "id" : "lalaworld",
-            "totalUnreadMsgs" : 24870,
-            "msgSinceLastUpdate" : 898,
-            "usersCount" : 7760,
-            "newUsersSinceLastUpdate" : 9
+            "totalUnreadMsgs" : 25820,
+            "msgSinceLastUpdate" : 950,
+            "usersCount" : 7777,
+            "newUsersSinceLastUpdate" : 17
         },
         {
             "name" : "CoinFi",
             "id" : "coinfi",
-            "totalUnreadMsgs" : 35186,
-            "msgSinceLastUpdate" : 379,
-            "usersCount" : 20579,
-            "newUsersSinceLastUpdate" : -141
+            "totalUnreadMsgs" : 35612,
+            "msgSinceLastUpdate" : 426,
+            "usersCount" : 20468,
+            "newUsersSinceLastUpdate" : -111
         },
         {
             "name" : "FundRequest",
             "id" : "fundrequestofficial",
-            "totalUnreadMsgs" : 1955,
-            "msgSinceLastUpdate" : 260,
-            "usersCount" : 977,
-            "newUsersSinceLastUpdate" : 146
+            "totalUnreadMsgs" : 2201,
+            "msgSinceLastUpdate" : 246,
+            "usersCount" : 1103,
+            "newUsersSinceLastUpdate" : 126
         },
         {
             "name" : "FortKnoxster",
             "id" : "fortknoxster",
-            "totalUnreadMsgs" : 7947,
-            "msgSinceLastUpdate" : 253,
-            "usersCount" : 3005,
-            "newUsersSinceLastUpdate" : 0
+            "totalUnreadMsgs" : 8126,
+            "msgSinceLastUpdate" : 179,
+            "usersCount" : 3007,
+            "newUsersSinceLastUpdate" : 2
         },
         {
             "name" : "RightMesh",
             "id" : "rightmesh",
-            "totalUnreadMsgs" : 3157,
-            "msgSinceLastUpdate" : 225,
-            "usersCount" : 2479,
-            "newUsersSinceLastUpdate" : 113
+            "totalUnreadMsgs" : 3394,
+            "msgSinceLastUpdate" : 237,
+            "usersCount" : 2607,
+            "newUsersSinceLastUpdate" : 128
         },
         {
             "name" : "Aion",
             "id" : "aion_blockchain",
-            "totalUnreadMsgs" : 18502,
-            "msgSinceLastUpdate" : 2054,
-            "usersCount" : 7609,
-            "newUsersSinceLastUpdate" : 42
+            "totalUnreadMsgs" : 19966,
+            "msgSinceLastUpdate" : 1464,
+            "usersCount" : 7673,
+            "newUsersSinceLastUpdate" : 64
         },
         {
             "name" : "Gladius",
             "id" : "gladiusio",
-            "totalUnreadMsgs" : 4141,
-            "msgSinceLastUpdate" : 206,
+            "totalUnreadMsgs" : 4367,
+            "msgSinceLastUpdate" : 226,
             "usersCount" : 7853,
-            "newUsersSinceLastUpdate" : 18
+            "newUsersSinceLastUpdate" : 0
         },
         {
             "name" : "Akropolis",
             "id" : "akropolis_official",
-            "totalUnreadMsgs" : 3070,
-            "msgSinceLastUpdate" : 218,
-            "usersCount" : 814,
-            "newUsersSinceLastUpdate" : 29
+            "totalUnreadMsgs" : 3312,
+            "msgSinceLastUpdate" : 242,
+            "usersCount" : 862,
+            "newUsersSinceLastUpdate" : 48
         },
         {
             "name" : "The Bee Token",
             "id" : "beetoken",
-            "totalUnreadMsgs" : 20419,
-            "msgSinceLastUpdate" : 6770,
-            "usersCount" : 45353,
-            "newUsersSinceLastUpdate" : 1645
+            "totalUnreadMsgs" : 27185,
+            "msgSinceLastUpdate" : 6766,
+            "usersCount" : 46254,
+            "newUsersSinceLastUpdate" : 901
         },
         {
             "name" : "Tokia",
             "id" : "tokiaio",
-            "totalUnreadMsgs" : 13755,
-            "msgSinceLastUpdate" : 1347,
-            "usersCount" : 5106,
-            "newUsersSinceLastUpdate" : 136
+            "totalUnreadMsgs" : 14964,
+            "msgSinceLastUpdate" : 1209,
+            "usersCount" : 5253,
+            "newUsersSinceLastUpdate" : 147
         },
         {
             "name" : "MATRIX",
             "id" : "matrixainetwork",
             "totalUnreadMsgs" : 0,
             "msgSinceLastUpdate" : null,
-            "usersCount" : 12806,
-            "newUsersSinceLastUpdate" : -126
+            "usersCount" : 12856,
+            "newUsersSinceLastUpdate" : 50
         },
         {
             "name" : "Republic Protocol",
             "id" : "republicprotocol",
             "totalUnreadMsgs" : 0,
             "msgSinceLastUpdate" : null,
-            "usersCount" : 4601,
-            "newUsersSinceLastUpdate" : 116
+            "usersCount" : 4770,
+            "newUsersSinceLastUpdate" : 169
         },
         {
             "name" : "TraDove",
             "id" : "tradoveglobalb2btokenoffering",
             "totalUnreadMsgs" : 0,
             "msgSinceLastUpdate" : null,
-            "usersCount" : 5498,
-            "newUsersSinceLastUpdate" : 85
+            "usersCount" : 5675,
+            "newUsersSinceLastUpdate" : 177
         }
     ]
 };
