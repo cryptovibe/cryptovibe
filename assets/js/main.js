@@ -55,7 +55,7 @@ const app = new Vue({
     data: {
         tableData: [],
         allowedSinceValues: [],
-        since: 'Last 3h',
+        since: 'Last 24h',
         isPaginated: false,
         isPaginationSimple: false,
         defaultSort: sortCol,
