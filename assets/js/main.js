@@ -6,12 +6,9 @@ let width = getWindowWidth();
 const maxMobileRes = 768;
 const maxNoInChart = 11;
 
-const cryptoData = tableData.infos.map(x => {
-    // format to 2 decimal places
-    x.newUsersPercent = x.newUsersSinceLastUpdate === null ? null : Math.round((10000 * x.newUsersSinceLastUpdate) / (x.usersCount - x.newUsersSinceLastUpdate)) / 100;
-    x.avgNoOfMsgPerUser = x.msgSinceLastUpdate === null ? null : Math.round(100 * x.msgSinceLastUpdate / x.usersCount) / 100;
-    return x;
-});
+const apiAddress = 'https://api.cryptovibe.io';
+
+let cryptoData = [];
 
 // when c
 const colMapping = {
@@ -56,23 +53,56 @@ window.addEventListener("optimizedResize", function() {
 const app = new Vue({
     el: '#cryptovibe-app',
     data: {
-        tableData: cryptoData,
+        tableData: [],
+        allowedSinceValues: [],
+        since: 'Last 3h',
         isPaginated: false,
         isPaginationSimple: false,
         defaultSort: sortCol,
         defaultSortDirection: sortOrd,
         currentPage: 1,
-        perPage: 100,
-        periodStart: tableData.period.prettyFrom,
-        periodEnd: tableData.period.prettyTo
+        perPage: 100
     },
 
     methods: {
         onSort: function(col, ordering) {
             drawBasic(col, ordering)
+        },
+        getAllowedSince: function() {
+            this.$http.get(`${apiAddress}/channels/stats-allowed-since-values`).then(response => {
+                this.allowedSinceValues = response.body.values;
+            }, response => {
+            });
+        },
+        getStats: function() {
+            this.$http.get(`${apiAddress}/channels/stats`, { params: { since: this.since } }).then(response => {
+                cryptoData = response.body;
+                cryptoData.forEach(x => {
+                    // format to 2 decimal places
+                    x.newUsersPercent = x.newUsersSinceLastUpdate === null ? null : Math.round((10000 * x.newUsersSinceLastUpdate) / (x.usersCount - x.newUsersSinceLastUpdate)) / 100;
+                    x.avgNoOfMsgPerUser = x.msgSinceLastUpdate === null ? null : Math.round(100 * x.msgSinceLastUpdate / x.usersCount) / 100;
+                });
+                this.tableData = cryptoData;
+                drawBasic(sortCol, sortOrd);
+            }, response => {
+            });
+        }
+    },
+
+    beforeMount() {
+        this.getAllowedSince();
+        this.getStats();
+    },
+
+    watch: {
+        since: function(val, oldVal) {
+            if (val !== oldVal) {
+                this.getStats();
+            }
         }
     }
 });
+
 
 google.charts.load('current', {packages: ['corechart', 'bar']});
 google.charts.setOnLoadCallback(() => drawBasic(sortCol, sortOrd));
@@ -98,11 +128,8 @@ function drawBasic(col, ord) {
         .map(x => { return [x.name, x[col]] });
 
     const headers = [['Crypto channel', colMapping[col],]];
-
     const data = google.visualization.arrayToDataTable(headers.concat(arrayData));
-
     const legendPosition = getWindowWidth() <= maxMobileRes ? 'none' : 'right';
-
     const options = {
         title: 'Telegram activity on crypto channels',
         legend: { position: legendPosition, maxLines: 3 },
@@ -114,8 +141,6 @@ function drawBasic(col, ord) {
         isStacked: true,
         bars: 'horizontal'
     };
-
     const chart = new google.charts.Bar(document.getElementById('chart'));
-
     chart.draw(data, options);
 }

@@ -24,13 +24,16 @@ layout: default
 
   <section class="section is-top-paddingless">
     <div class="container">
-      <div class="has-text-centered">
-        <b>
-          Current period: {{ periodStart }} - {{ periodEnd }}
-        </b>
-      </div>
       <template>
         <section class="little-top-padded">
+          <b-field grouped group-multiline>
+            <b-select v-model="since" v-on:change="getStats">
+              <option v-for="value in allowedSinceValues" v-bind:value="value">
+                {{value}}
+              </option>
+            </b-select>
+          </b-field>
+
           <b-table
               :data="tableData"
               :paginated="isPaginated"
