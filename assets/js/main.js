@@ -1,16 +1,9 @@
 Vue.use(Buefy.default);
 
-let sortCol = 'usersCount';
-let sortOrd = 'desc';
-let width = getWindowWidth();
-const maxMobileRes = 768;
 const maxNoInChart = 11;
 
 const apiAddress = 'https://api.cryptovibe.io';
 
-let cryptoData = [];
-
-// when c
 const colMapping = {
   'name': 'Name',
   'usersCount': 'Number of users in telegram',
@@ -20,36 +13,6 @@ const colMapping = {
   'avgNoOfMsgPerUser': 'Avg no of messages per user in current period'
 };
 
-(function() {
-    const throttle = function (type, name, obj) {
-        obj = obj || window;
-        let running = false;
-        const func = function () {
-            if (running) {
-                return;
-            }
-            running = true;
-            requestAnimationFrame(function () {
-                obj.dispatchEvent(new CustomEvent(name));
-                running = false;
-            });
-        };
-        obj.addEventListener(type, func);
-    };
-
-    /* init - you can init any event */
-    throttle("resize", "optimizedResize");
-})();
-
-window.addEventListener("optimizedResize", function() {
-    const newWidth = getWindowWidth();
-    if (width !== newWidth) {
-        width = newWidth;
-        drawBasic(sortCol, sortOrd);
-    }
-});
-
-
 const app = new Vue({
     el: '#cryptovibe-app',
     data: {
@@ -58,15 +21,21 @@ const app = new Vue({
         since: 'Last 24h',
         isPaginated: false,
         isPaginationSimple: false,
-        defaultSort: sortCol,
-        defaultSortDirection: sortOrd,
+        defaultSort: 'usersCount',
+        defaultSortDirection: 'desc',
         currentPage: 1,
-        perPage: 100
+        perPage: 100,
+        sortCol: 'usersCount',
+        sortDirection: 'desc',
+        mainChart: null
     },
 
     methods: {
         onSort: function(col, ordering) {
-            drawBasic(col, ordering)
+            this.sortCol = col;
+            this.sortDirection = ordering;
+            // console.log(this.defaultSort);
+            this.drawChart()
         },
         getAllowedSince: function() {
             this.$http.get(`${apiAddress}/channels/stats-allowed-since-values`).then(response => {
@@ -76,15 +45,51 @@ const app = new Vue({
         },
         getStats: function() {
             this.$http.get(`${apiAddress}/channels/stats`, { params: { since: this.since } }).then(response => {
-                cryptoData = response.body;
+                const cryptoData = response.body;
                 cryptoData.forEach(x => {
                     // format to 2 decimal places
                     x.newUsersPercent = x.newUsersSinceLastUpdate === null ? null : Math.round((10000 * x.newUsersSinceLastUpdate) / (x.usersCount - x.newUsersSinceLastUpdate)) / 100;
                     x.avgNoOfMsgPerUser = x.msgSinceLastUpdate === null ? null : Math.round(100 * x.msgSinceLastUpdate / x.usersCount) / 100;
                 });
                 this.tableData = cryptoData;
-                drawBasic(sortCol, sortOrd);
+                this.drawChart()
             }, response => {
+            });
+        },
+        drawChart: function() {
+            if (this.mainChart !== null) {
+                this.mainChart.destroy();
+            }
+            const col = this.sortCol;
+            const namesWithValues = this.tableData
+                .map(x => x)
+                .filter(x => x[col] !== null)
+                .sort((a, b) => {
+                    if (this.sortDirection === 'asc')
+                        return a[col] - b[col];
+                    else
+                        return b[col] - a[col];
+                })
+                .slice(0, maxNoInChart)
+                .map(x => { return [x.name, x[col]] });
+            const labels = namesWithValues.map(x => x[0]);
+            const data = namesWithValues.map(x => x[1]);
+            const ctx = document.getElementById("main-chart").getContext('2d');
+            this.mainChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: colMapping[col],
+                        data: data,
+                        backgroundColor: 'rgb(60, 125, 230)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
             });
         }
     },
@@ -103,44 +108,3 @@ const app = new Vue({
     }
 });
 
-
-google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(() => drawBasic(sortCol, sortOrd));
-
-function getWindowWidth() {
-    return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-}
-
-function drawBasic(col, ord) {
-    sortCol = col;
-    sortOrd = ord;
-
-    const arrayData = cryptoData
-        .map(x => x)
-        .filter(x => x[col] !== null)
-        .sort((a, b) => {
-            if (ord === 'asc')
-                return a[col] - b[col];
-            else
-                return b[col] - a[col];
-        })
-        .slice(0, maxNoInChart)
-        .map(x => { return [x.name, x[col]] });
-
-    const headers = [['Crypto channel', colMapping[col],]];
-    const data = google.visualization.arrayToDataTable(headers.concat(arrayData));
-    const legendPosition = getWindowWidth() <= maxMobileRes ? 'none' : 'right';
-    const options = {
-        title: 'Telegram activity on crypto channels',
-        legend: { position: legendPosition, maxLines: 3 },
-        hAxis: {
-            title: colMapping[col],
-            minValue: Math.min(0, ...arrayData.map(x => x[col]))
-        },
-        height: 400,
-        isStacked: true,
-        bars: 'horizontal'
-    };
-    const chart = new google.charts.Bar(document.getElementById('chart'));
-    chart.draw(data, options);
-}
