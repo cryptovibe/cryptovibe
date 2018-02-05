@@ -27,10 +27,19 @@ const app = new Vue({
         perPage: 100,
         sortCol: 'usersCount',
         sortDirection: 'desc',
-        mainChart: null
+        mainChart: null,
+        loadingComponent: null
     },
 
     methods: {
+        showLoading: function() {
+            this.loadingComponent = this.$loading.open();
+        },
+        stopShowingLoading: function() {
+            if (this.loadingComponent) {
+                this.loadingComponent.close();
+            }
+        },
         onSort: function(col, ordering) {
             this.sortCol = col;
             this.sortDirection = ordering;
@@ -44,6 +53,7 @@ const app = new Vue({
             });
         },
         getStats: function() {
+            this.showLoading();
             this.$http.get(`${apiAddress}/channels/stats`, { params: { since: this.since } }).then(response => {
                 const cryptoData = response.body;
                 cryptoData.forEach(x => {
@@ -51,6 +61,7 @@ const app = new Vue({
                     x.newUsersPercent = x.newUsersSinceLastUpdate === null ? null : Math.round((10000 * x.newUsersSinceLastUpdate) / (x.usersCount - x.newUsersSinceLastUpdate)) / 100;
                     x.avgNoOfMsgPerUser = x.msgSinceLastUpdate === null ? null : Math.round(100 * x.msgSinceLastUpdate / x.usersCount) / 100;
                 });
+                this.stopShowingLoading();
                 this.tableData = cryptoData;
                 this.drawChart()
             }, response => {
