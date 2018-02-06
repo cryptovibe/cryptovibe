@@ -16,6 +16,13 @@ layout: default
 <div id="cryptovibe-app" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 
   <section class="section is-small is-top-paddingless">
+    <div class="buttons is-centered">
+      <button class="button" v-for="(value, key) in buttons" v-bind:class="[value ? 'is-primary' : '', '']"
+              v-on:click="getStats(key)">
+        {{ key }}
+      </button>
+    </div>
+
     <div class="container">
       <canvas id="main-chart" class="chartjs" height="400px" >
       </canvas>
@@ -25,15 +32,7 @@ layout: default
   <section class="section is-top-paddingless">
     <div class="container">
       <template>
-        <section class="little-top-padded">
-          <b-field grouped group-multiline>
-            <b-select v-model="since" v-on:change="getStats">
-              <option v-for="value in allowedSinceValues" v-bind:value="value">
-                {{value}}
-              </option>
-            </b-select>
-          </b-field>
-
+        <section>
           <b-table
               :data="tableData"
               :paginated="isPaginated"

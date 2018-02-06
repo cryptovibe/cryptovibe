@@ -18,7 +18,6 @@ const app = new Vue({
     data: {
         tableData: [],
         allowedSinceValues: [],
-        since: 'Last 24h',
         isPaginated: false,
         isPaginationSimple: false,
         defaultSort: 'usersCount',
@@ -28,7 +27,8 @@ const app = new Vue({
         sortCol: 'usersCount',
         sortDirection: 'desc',
         mainChart: null,
-        loadingComponent: null
+        loadingComponent: null,
+        buttons: { 'Last 24h': true } // value indicates if it's active
     },
 
     methods: {
@@ -43,18 +43,23 @@ const app = new Vue({
         onSort: function(col, ordering) {
             this.sortCol = col;
             this.sortDirection = ordering;
-            // console.log(this.defaultSort);
             this.drawChart()
         },
         getAllowedSince: function() {
             this.$http.get(`${apiAddress}/channels/stats-allowed-since-values`).then(response => {
                 this.allowedSinceValues = response.body.values;
+                const oldButtons = this.buttons;
+                this.buttons = {};
+                response.body.values.forEach(x => {
+                    this.buttons[x] = oldButtons[x] ? oldButtons[x] : false
+                });
             }, response => {
             });
         },
-        getStats: function() {
+        getStats: function(value) {
             this.showLoading();
-            this.$http.get(`${apiAddress}/channels/stats`, { params: { since: this.since } }).then(response => {
+            Object.keys(this.buttons).forEach(k => this.buttons[k] = k === value);
+            this.$http.get(`${apiAddress}/channels/stats`, { params: { since: value } }).then(response => {
                 const cryptoData = response.body;
                 cryptoData.forEach(x => {
                     // format to 2 decimal places
@@ -107,15 +112,8 @@ const app = new Vue({
 
     beforeMount() {
         this.getAllowedSince();
-        this.getStats();
-    },
-
-    watch: {
-        since: function(val, oldVal) {
-            if (val !== oldVal) {
-                this.getStats();
-            }
-        }
+        const since = Object.keys(this.buttons).find(x => this.buttons[x]);
+        this.getStats(since);
     }
 });
 
