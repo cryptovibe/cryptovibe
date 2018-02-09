@@ -81,9 +81,8 @@ Vue.component('group-details', {
             label: yLabel,
             data: ys,
             borderColor: chartColor,
-            backgroundColor: chartColor,
             lineTension: 0,
-            pointRadius: 0,
+            pointRadius: stepped ? 2 : 0,
             pointHitRadius: 4,
             steppedLine: stepped,
           }]
