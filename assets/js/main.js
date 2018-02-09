@@ -160,10 +160,10 @@ const app = new Vue({
         isPaginationSimple: false,
         defaultSort: 'newUsersSinceLastUpdate',
         defaultSortDirection: 'desc',
+        sortCol: 'newUsersSinceLastUpdate',
+        sortDirection: 'desc',
         currentPage: 1,
         perPage: 100,
-        sortCol: 'usersCount',
-        sortDirection: 'desc',
         mainChart: null,
         loadingComponent: null,
         buttons: { 'Last 24h': true }, // value indicates if it's active
