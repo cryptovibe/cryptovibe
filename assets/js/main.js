@@ -1,8 +1,10 @@
 Vue.use(Buefy.default);
 
-const maxNoInChart = 11;
+const maxNoInChart = 12;
 
 const apiAddress = 'https://api.cryptovibe.io';
+
+const chartColor = 'rgb(60, 125, 230)';
 
 const colMapping = {
   'name': 'Name',
@@ -12,6 +14,142 @@ const colMapping = {
   'msgSinceLastUpdate': 'Messages in current period',
   'avgNoOfMsgPerUser': 'Avg no of messages per user in current period'
 };
+
+const usersChartType = 'users';
+const usersChartLabel = 'Total number of users';
+const messagesChartType = 'messages';
+const messagesChartLabel = 'Number of messages';
+
+Vue.component('group-details', {
+  props: ['row'],
+
+  data: function() {
+    return {
+      row: this.row,
+      loadingComponent: null,
+      buttons: [{
+        type: usersChartType,
+        label: usersChartLabel,
+        isActive: true
+      }, {
+        type: messagesChartType,
+        label: messagesChartLabel,
+        isActive: false
+      }]
+    }
+  },
+
+  template: '\
+    <div>\
+      <div class="buttons is-centered">\
+        <button class="button" v-for="x in this.buttons" v-bind:class="[x.isActive ? \'is-primary\' : \'\', \'\']" v-on:click="selectChartType(x.type)">\
+          {{ x.label }}\
+        </button>\
+      </div>\
+      <div>\
+        <canvas v-bind:id="\'details-chart-\' + this.row.id" height="400px"  width="100%">\
+        </canvas>\
+      </div>\
+    </div>',
+
+  methods: {
+    selectChartType: function(type) {
+      this.buttons.forEach(x => x.isActive = x.type === type);
+      this.drawChart(type)
+    },
+
+    drawChart: function(type) {
+      const label = this.buttons.find(x => x.type === type).label;
+      if (type === usersChartType)
+        this.drawDetailsChart(this.data.usersCounts.xs, this.data.usersCounts.ys, label, false);
+      else
+        this.drawDetailsChart(this.data.msgsStats.xs, this.data.msgsStats.ys, label, true);
+    },
+
+    drawDetailsChart: function(xs, ys, yLabel, stepped) {
+      const htmlId = `details-chart-${this.row.id}`;
+      const ctx = document.getElementById(htmlId).getContext('2d');
+      if (this.chart) {
+        this.chart.destroy();
+      }
+      this.chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: xs.map(x => moment(x)),
+          datasets: [{
+            fill: false,
+            label: yLabel,
+            data: ys,
+            borderColor: chartColor,
+            backgroundColor: chartColor,
+            lineTension: 0,
+            pointRadius: 0,
+            steppedLine: stepped,
+          }]
+        },
+        options: {
+          animation: {
+            duration: 0, // general animation time
+          },
+          hover: {
+            animationDuration: 0, // duration of animations when hovering an item
+          },
+          responsiveAnimationDuration: 0, // animation duration after a resize
+          responsive: true,
+          maintainAspectRatio: false,
+          fill: false,
+          scales: {
+            xAxes: [{
+              type: 'time',
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: "Last 7 days",
+              },
+              time: {
+                unit: 'hour',
+                displayFormats: {
+                  // hour: 'YYYY-MM-DD hh:mm'
+                  hour: 'MMM Do, HH:mm'
+                }
+              },
+              ticks: {
+                maxRotation: 45,
+                minRotation: 45
+              }
+            }],
+            yAxes: [{
+              display: true,
+              scaleLabel: {
+                display: false,
+                labelString: yLabel,
+              }
+            }]
+          }
+        }
+      });
+    }
+  },
+
+  beforeDestroy() {
+    if (this.chart) {
+      this.chart.destroy();
+      this.chart = null;
+    }
+    this.data = null;
+  },
+
+  beforeMount() {
+    const id = this.row.id;
+    this.loadingComponent = this.$loading.open();
+    this.$http.get(`${apiAddress}/channels/${id}`).then(response => {
+      this.loadingComponent.close();
+      this.data = response.body;
+      this.drawChart(usersChartType);
+    })
+  },
+
+});
 
 const app = new Vue({
     el: '#cryptovibe-app',
@@ -28,7 +166,9 @@ const app = new Vue({
         sortDirection: 'desc',
         mainChart: null,
         loadingComponent: null,
-        buttons: { 'Last 24h': true } // value indicates if it's active
+        buttons: { 'Last 24h': true }, // value indicates if it's active
+        defaultOpenedDetails: [1],
+        details: {}
     },
 
     methods: {
@@ -98,7 +238,7 @@ const app = new Vue({
                     datasets: [{
                         label: colMapping[col],
                         data: data,
-                        backgroundColor: 'rgb(60, 125, 230)',
+                        backgroundColor: chartColor,
                         borderWidth: 1
                     }]
                 },
@@ -107,7 +247,8 @@ const app = new Vue({
                     maintainAspectRatio: false,
                 }
             });
-        }
+        },
+
     },
 
     beforeMount() {

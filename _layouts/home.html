@@ -24,7 +24,7 @@ layout: default
     </div>
 
     <div class="container">
-      <canvas id="main-chart" class="chartjs" height="400px" >
+      <canvas id="main-chart" height="400px" width="100%">
       </canvas>
     </div>
   </section>
@@ -42,7 +42,10 @@ layout: default
               :default-sort-direction="defaultSortDirection"
               :default-sort="defaultSort"
               striped="true"
-              v-on:sort="onSort">
+              v-on:sort="onSort"
+              :opened-detailed="defaultOpenedDetails"
+              detailed
+              detail-key="id">
 
             <template slot-scope="props">
               <b-table-column field="name" label="Name">
@@ -90,8 +93,12 @@ layout: default
                   {{ props.row.avgNoOfMsgPerUser }}
                 </span>
               </b-table-column>
-
             </template>
+
+            <template slot="detail" slot-scope="props">
+              <group-details v-bind:row="props.row"></group-details>
+            </template>
+
           </b-table>
         </section>
       </template>
