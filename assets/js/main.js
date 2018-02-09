@@ -158,7 +158,7 @@ const app = new Vue({
         allowedSinceValues: [],
         isPaginated: false,
         isPaginationSimple: false,
-        defaultSort: 'usersCount',
+        defaultSort: 'newUsersSinceLastUpdate',
         defaultSortDirection: 'desc',
         currentPage: 1,
         perPage: 100,
@@ -231,21 +231,41 @@ const app = new Vue({
             const labels = namesWithValues.map(x => x[0]);
             const data = namesWithValues.map(x => x[1]);
             const ctx = document.getElementById("main-chart").getContext('2d');
+            const addPercentage = col === 'newUsersPercent';
             this.mainChart = new Chart(ctx, {
-                type: 'horizontalBar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: colMapping[col],
-                        data: data,
-                        backgroundColor: chartColor,
-                        borderWidth: 1
-                    }]
+              type: 'horizontalBar',
+              data: {
+                labels: labels,
+                datasets: [{
+                  label: colMapping[col],
+                  data: data,
+                  backgroundColor: chartColor,
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                tooltips: {
+                  mode: 'label',
+                  callbacks: {
+                    label: function(tooltipItem, data) {
+                      let result = colMapping[col] + ": " + tooltipItem.xLabel;
+                      return addPercentage ? result + '%' : result;
+                    }
+                  }
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
+                scales: {
+                  xAxes: [{
+                    ticks: {
+                      callback: function(value) {
+                        const fixed = parseFloat(value.toFixed(3)).toString();
+                        return addPercentage ? fixed + '%' : fixed;
+                      },
+                    },
+                  }]
                 }
+              }
             });
         },
 
@@ -257,4 +277,3 @@ const app = new Vue({
         this.getStats(since);
     }
 });
-

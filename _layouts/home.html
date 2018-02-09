@@ -15,19 +15,17 @@ layout: default
 {% raw %}
 <div id="cryptovibe-app" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 
-  <section class="section is-small is-top-paddingless">
-    <div class="buttons is-centered">
-      <button class="button" v-for="(value, key) in buttons" v-bind:class="[value ? 'is-primary' : '', '']"
-              v-on:click="getStats(key)">
-        {{ key }}
-      </button>
-    </div>
+  <div class="container block">
+    <canvas id="main-chart" height="400px" width="100%">
+    </canvas>
+  </div>
 
-    <div class="container">
-      <canvas id="main-chart" height="400px" width="100%">
-      </canvas>
-    </div>
-  </section>
+  <p class="buttons is-centered">
+    <button class="button" v-for="(value, key) in buttons" v-bind:class="[value ? 'is-primary' : '', '']"
+            v-on:click="getStats(key)">
+      {{ key }}
+    </button>
+  </p>
 
   <section class="section is-top-paddingless">
     <div class="container">
