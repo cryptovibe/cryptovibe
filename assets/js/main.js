@@ -25,8 +25,8 @@ Vue.component('group-details', {
 
   data: function() {
     return {
-      row: this.row,
       loadingComponent: null,
+      chart: null,
       buttons: [{
         type: usersChartType,
         label: usersChartLabel,
@@ -37,6 +37,25 @@ Vue.component('group-details', {
         isActive: false
       }]
     }
+  },
+
+  watch: {
+    row: function(newVal) {
+      if (this.chart) {
+        this.chart.destroy();
+      }
+      this.loadingComponent = null;
+      this.buttons = [{
+        type: usersChartType,
+        label: usersChartLabel,
+        isActive: true
+      }, {
+        type: messagesChartType,
+        label: messagesChartLabel,
+        isActive: false
+      }];
+      this.loadData();
+    },
   },
 
   template: '\
@@ -53,6 +72,16 @@ Vue.component('group-details', {
     </div>',
 
   methods: {
+    loadData: function() {
+      const id = this.row.id;
+      this.loadingComponent = this.$loading.open();
+      this.$http.get(`${apiAddress}/channels/${id}`).then(response => {
+        this.loadingComponent.close();
+        this.data = response.body;
+        this.drawChart(usersChartType);
+      })
+    },
+
     selectChartType: function(type) {
       this.buttons.forEach(x => x.isActive = x.type === type);
       this.drawChart(type)
@@ -98,6 +127,11 @@ Vue.component('group-details', {
           responsive: true,
           maintainAspectRatio: false,
           fill: false,
+          legend: {
+            onClick: function(e, legendItem) {
+              // do nothing, just prevent default
+            },
+          },
           scales: {
             xAxes: [{
               type: 'time',
@@ -109,21 +143,20 @@ Vue.component('group-details', {
               time: {
                 unit: 'hour',
                 displayFormats: {
-                  // hour: 'YYYY-MM-DD hh:mm'
                   hour: 'MMM Do, HH:mm'
                 }
               },
               ticks: {
                 maxRotation: 45,
                 minRotation: 45
-              }
+              },
             }],
             yAxes: [{
               display: true,
               scaleLabel: {
                 display: false,
                 labelString: yLabel,
-              }
+              },
             }]
           }
         }
@@ -140,13 +173,7 @@ Vue.component('group-details', {
   },
 
   beforeMount() {
-    const id = this.row.id;
-    this.loadingComponent = this.$loading.open();
-    this.$http.get(`${apiAddress}/channels/${id}`).then(response => {
-      this.loadingComponent.close();
-      this.data = response.body;
-      this.drawChart(usersChartType);
-    })
+    this.loadData();
   },
 
 });
@@ -162,12 +189,12 @@ const app = new Vue({
         defaultSortDirection: 'desc',
         sortCol: 'newUsersSinceLastUpdate',
         sortDirection: 'desc',
+        openedDetailed: [],
         currentPage: 1,
         perPage: 100,
         mainChart: null,
         loadingComponent: null,
         buttons: { 'Last 24h': true }, // value indicates if it's active
-        defaultOpenedDetails: [1],
         details: {}
     },
 
@@ -211,6 +238,9 @@ const app = new Vue({
                 this.drawChart()
             }, response => {
             });
+        },
+        detailsOpened: function(row) {
+          this.openedDetailed = this.openedDetailed.filter(id => id === row.id);
         },
         drawChart: function() {
             if (this.mainChart !== null) {

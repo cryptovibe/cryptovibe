@@ -41,9 +41,10 @@ layout: default
               :default-sort="defaultSort"
               striped="true"
               v-on:sort="onSort"
-              :opened-detailed="defaultOpenedDetails"
+              :opened-detailed="openedDetailed"
               detailed
-              detail-key="id">
+              detail-key="id"
+              v-on:details-open="detailsOpened">
 
             <template slot-scope="props">
               <b-table-column field="name" label="Name">
