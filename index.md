@@ -1,3 +1,3 @@
 ---
-layout: maintanance
+layout: home
 ---
